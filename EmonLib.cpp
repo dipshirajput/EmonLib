@@ -161,7 +161,7 @@ void EnergyMonitor::calcVI(unsigned int crossings, unsigned int timeout)
 
   //Calculation power values
   realPower = V_RATIO * I_RATIO * sumP / numberOfSamples;
-  apparentPower = Vrms * Irms;
+  apparentPower = Vrms / Irms;
   powerFactor=realPower / apparentPower;
 
   //Reset accumulators
