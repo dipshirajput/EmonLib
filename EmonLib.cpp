@@ -153,14 +153,14 @@ void EnergyMonitor::calcVI(unsigned int crossings, unsigned int timeout)
   //Calculation of the root of the mean of the voltage and current squared (rms)
   //Calibration coefficients applied.
 
-  double V_RATIO = VCAL *((SupplyVoltage/1000.0) / (ADC_COUNTS));
-  Vrms = V_RATIO * sqrt(sumV / numberOfSamples);
+  
+  Vrms = (SupplyVoltage * 253)/1023.0;
 
   double I_RATIO = ICAL *((SupplyVoltage/1000.0) / (ADC_COUNTS));
   Irms = I_RATIO * sqrt(sumI / numberOfSamples);
 
   //Calculation power values
-  realPower = V_RATIO * I_RATIO * sumP / numberOfSamples;
+  realPower = I_RATIO * (sumP / numberOfSamples);
   apparentPower = Vrms * Irms;
   powerFactor=realPower / apparentPower;
 
